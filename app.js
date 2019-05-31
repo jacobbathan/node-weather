@@ -2,17 +2,13 @@ const request = require('request');
 const geocode = require('./utils/geocode');
 const forecast = require('./utils/forecast');
 
-// Accept location via command line argument
-//
-//
-//Access command line argument without yargs
-//use string valuse as input for geocode
-//only geocode if location was provided
-//test work with some locations
+const location = process.argv[2]
 
+if (!location) {
+    console.log('Please provide an address')
+} else {
 
-
-geocode(process.argv[2], (error, data) => {
+geocode(location, (error, data) => {
   if (error) {
     return console.log(error);
   }
@@ -26,3 +22,5 @@ geocode(process.argv[2], (error, data) => {
       console.log(forecastData)
   });
 });
+}
+
